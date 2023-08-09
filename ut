@@ -1,0 +1,25 @@
+alc_require_new_android_api() {
+  ui_print "*********************************************************"
+  ui_print "! Unsupported Android SDK version $1 (below Pie)"
+  ui_print "! Please install Android 9+"
+  abort "*********************************************************"
+}
+
+alc_require_new_magisk() {
+  ui_print "*********************************************************"
+  ui_print "! Unsupported Magisk version $1 (below 24200)"
+  ui_print "! Please install Magisk v24.2+"
+  abort "*********************************************************"
+}
+
+check_android_api_version() {
+  if [ "$API" -lt 28 ]; then
+    alc_require_new_android_api "$API"
+  fi
+}
+
+check_magisk_version() {
+  if [ "$MAGISK_VER_CODE" -lt 24200 ]; then
+    alc_require_new_magisk "$MAGISK_VER_CODE"
+  fi
+}
